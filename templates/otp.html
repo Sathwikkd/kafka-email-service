@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f8fb;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .header {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 15px;
+            font-size: 20px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .content {
+            color: #333333;
+            font-size: 16px;
+            padding: 20px;
+        }
+        .otp {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            background-color: #e9f2ff;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .footer {
+            font-size: 14px;
+            color: #666666;
+            padding: 15px;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">OTP Verification</div>
+        <div class="content">
+            <p>Hello,</p>
+            <p>Your OTP for verification is:</p>
+            <div class="otp">{{OTP}}</div>
+            <p>Please enter this OTP to complete your process.</p>
+            <p>Thank you,</p>
+            <p><strong>VithSutra Team</strong></p>
+        </div>
+        <div class="footer">
+            Need help? <a href="https://vithsutra.com">Contact Support</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+#boiler plate code
+kafka:
+  brokers: ["localhost:9092"]
+  group_id: "email-service"
+  topics:
+    - email.otp
+    - email.welcome
+   # - email.password_reset
+
+smtp:
+  host: "smtp.gmail.com"
+  port: 587
+  username: "your-email@gmail.com"
+  password: "your-app-password"
+  from: "noreply.vithsutra@gmail.com"
