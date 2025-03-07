@@ -20,6 +20,7 @@ var Config struct {
 		Password string
 		From     string
 	}
+	
 }
 
 // LoadConfig loads configuration from YAML file

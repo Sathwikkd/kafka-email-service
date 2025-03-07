@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"log"
+	"time"
 
 	"github.com/segmentio/kafka-go"
 	"github.com/vithsutra/vithsutra_email_service/config"
@@ -16,15 +17,17 @@ type OTPMessage struct {
 }
 
 func StartOTPConsumer() {
-	if len(config.Config.Kafka.Topics) < 1 {
-		log.Fatal("[ERROR] No topics found in config.yaml")
+	if len(config.Config.Kafka.Topics) < 2 {
+		log.Fatal("[ERROR] No OTP topic found in config.yaml")
 	}
 
-	topic := config.Config.Kafka.Topics[0] // "email.otp"
+	topic := config.Config.Kafka.Topics[1] // Example: "email.otp"
 	reader := kafka.NewReader(kafka.ReaderConfig{
-		Brokers: config.Config.Kafka.Brokers,
-		GroupID: config.Config.Kafka.GroupID,
-		Topic:   topic,
+		Brokers:        config.Config.Kafka.Brokers,
+		GroupID:        config.Config.Kafka.GroupID,
+		Topic:          topic,
+		StartOffset:    kafka.LastOffset,
+		CommitInterval: time.Second * 1,
 	})
 
 	defer reader.Close()
@@ -34,6 +37,15 @@ func StartOTPConsumer() {
 		msg, err := reader.ReadMessage(context.Background())
 		if err != nil {
 			log.Printf("[ERROR] Error reading OTP message: %v", err)
+			continue
+		}
+
+		// Debug: Print raw message
+		log.Printf("[DEBUG] Raw OTP Message: %s", string(msg.Value))
+
+		// Validate JSON before parsing
+		if !json.Valid(msg.Value) {
+			log.Printf("[ERROR] Skipping invalid JSON message: %s", string(msg.Value))
 			continue
 		}
 

@@ -11,8 +11,8 @@ import (
 const (
 	SMTPServer = "smtp.gmail.com"
 	SMTPPort   = "587"
-	SMTPUser   = "your-email@gmail.com"
-	SMTPPass   = "your-email-password"
+	SMTPUser   = "noreply.vithsutra@gmail.com"
+	SMTPPass   = "vlco ctlo uuzm wqqv"
 )
 
 // SendEmail function to send emails using HTML templates
